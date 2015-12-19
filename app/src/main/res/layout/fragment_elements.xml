@@ -1,0 +1,818 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ElementsFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/playerGoodsBox1"
+            style="@style/playerGoodHolderStyle"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/player_elements_holder_shape">
+
+            <TextView
+                android:id="@+id/playerTextLbl1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/playerTitle"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/playerIDLbl1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@id/playerTextLbl1"
+                android:paddingStart="5dp"
+                android:text="1"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RelativeLayout
+                android:id="@+id/totalElementCountWrapper1"
+                style="@style/totalElementCountWrapper12Style"
+                android:layout_below="@id/playerIDLbl1"
+                >
+
+                <TextView
+                    android:id="@+id/totalHeader1"
+                    style="@style/totalElementCountHeader" />
+
+                <TextView
+                    android:id="@+id/totalElementCount1"
+                    style="@style/totalElementCountText"
+                    android:layout_below="@id/totalHeader1" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/goodsHolder1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/playerTextLbl1"
+                android:layout_toEndOf="@id/totalElementCountWrapper1"
+                android:layout_marginStart="15sp">
+
+                <RelativeLayout
+                    android:id="@+id/fireHolder1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/fireImg1"
+                        style="@style/fireStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/fireCount1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/fireImg1"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/waterHolder1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/fireHolder1">
+
+
+                    <ImageView
+                        android:id="@+id/waterImg1"
+                        style="@style/waterStyle"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:id="@+id/waterCount1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/waterImg1"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/windHolder1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/waterHolder1">
+
+                    <ImageView
+                        android:id="@+id/windImg1"
+                        style="@style/windStyle"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/windCount1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/windImg1"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/earthHolder1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/windHolder1">
+
+                    <ImageView
+                        android:id="@+id/earthImg1"
+                        style="@style/earthStyle"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/earthCount1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/earthImg1"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp">
+                <Button
+                    android:id="@+id/addOneScoreBtn1"
+                    android:layout_width="30sp"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:layout_toEndOf="@id/playerScore1"/>
+
+                <TextView
+                    android:id="@+id/playerScore1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/textPlaceHolder"
+                    android:textSize="18sp"
+                    android:layout_toEndOf="@id/minusOneScoreBtn1"
+                    android:padding="1dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="3dp"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"/>
+
+                <Button
+                    android:id="@+id/minusOneScoreBtn1"
+                    android:layout_width="30sp"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/playerGoodsBox2"
+            style="@style/playerGoodHolderStyle"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/player_elements_holder_shape">
+
+            <TextView
+                android:id="@+id/playerTextLbl2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/playerTitle"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/playerIDLbl2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@id/playerTextLbl2"
+                android:paddingStart="5dp"
+                android:text="2"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RelativeLayout
+                android:id="@+id/totalElementCountWrapper2"
+                style="@style/totalElementCountWrapper12Style"
+                android:layout_below="@id/playerIDLbl2"
+                >
+
+                <TextView
+                    android:id="@+id/totalHeader2"
+                    style="@style/totalElementCountHeader" />
+
+                <TextView
+                    android:id="@+id/totalElementCount2"
+                    style="@style/totalElementCountText"
+                    android:layout_below="@id/totalHeader2" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/goodsHolder2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/playerTextLbl2"
+                android:layout_toEndOf="@id/totalElementCountWrapper2"
+                android:layout_marginStart="15sp">
+
+                <RelativeLayout
+                    android:id="@+id/fireHolder2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/fireImg2"
+                        style="@style/fireStyle"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/fireCount2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/fireImg2"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/waterHolder2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/fireHolder2">
+
+
+                    <ImageView
+                        android:id="@+id/waterImg2"
+                        style="@style/waterStyle"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:id="@+id/waterCount2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/waterImg2"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/windHolder2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/waterHolder2">
+
+                    <ImageView
+                        android:id="@+id/windImg2"
+                        style="@style/windStyle"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/windCount2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/windImg2"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/earthHolder2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/windHolder2">
+
+                    <ImageView
+                        android:id="@+id/earthImg2"
+                        style="@style/earthStyle"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/earthCount2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/earthImg2"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp">
+                <Button
+                    android:id="@+id/addOneScoreBtn2"
+                    android:layout_width="30sp"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:layout_toEndOf="@id/playerScore2"/>
+
+                <TextView
+                    android:id="@+id/playerScore2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/textPlaceHolder"
+                    android:textSize="18sp"
+                    android:layout_toEndOf="@id/minusOneScoreBtn2"
+                    android:padding="1dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="3dp"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"/>
+
+                <Button
+                    android:id="@+id/minusOneScoreBtn2"
+                    android:layout_width="30sp"
+                    android:layout_height="wrap_content"
+                    android:text="-"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/playerGoodsBox3"
+            style="@style/playerGoodHolderStyle"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/playerGoodsBox2"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/playerGoodsBox1"
+            android:background="@drawable/player_elements_holder_shape">
+
+            <TextView
+                android:id="@+id/playerTextLbl3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/playerTitle"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/playerIDLbl3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@id/playerTextLbl3"
+                android:paddingStart="5dp"
+                android:text="3"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RelativeLayout
+                android:id="@+id/totalElementCountWrapper3"
+                style="@style/totalElementCountWrapper12Style"
+                android:layout_below="@id/playerIDLbl3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="12sp"
+                android:layout_marginTop="10sp"
+                >
+
+                <TextView
+                    android:id="@+id/totalHeader3"
+                    style="@style/totalElementCountHeader" />
+
+                <TextView
+                    android:id="@+id/totalElementCount3"
+                    style="@style/totalElementCountText"
+                    android:layout_below="@id/totalHeader3" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/goodsHolder3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/totalElementCountWrapper3"
+                android:layout_centerHorizontal="true">
+
+                <RelativeLayout
+                    android:id="@+id/fireHolder3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/fireImg3"
+                        style="@style/fireStyle"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/fireCount3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/fireImg3"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/waterHolder3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/fireHolder3">
+
+
+                    <ImageView
+                        android:id="@+id/waterImg3"
+                        style="@style/waterStyle"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:id="@+id/waterCount3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/waterImg3"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/windHolder3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/waterHolder3">
+
+                    <ImageView
+                        android:id="@+id/windImg3"
+                        style="@style/windStyle"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/windCount3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/windImg3"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/earthHolder3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/waterHolder3"
+                    android:layout_toEndOf="@id/windHolder3">
+
+                    <ImageView
+                        android:id="@+id/earthImg3"
+                        style="@style/earthStyle"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/earthCount3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/earthImg3"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/goodsHolder3">
+                <Button
+                    android:id="@+id/addOneScoreBtn3"
+                    android:layout_width="30sp"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:layout_toEndOf="@id/playerScore3"/>
+
+                <TextView
+                    android:id="@+id/playerScore3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/textPlaceHolder"
+                    android:textSize="18sp"
+                    android:layout_toEndOf="@id/minusOneScoreBtn3"
+                    android:padding="1dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="3dp"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"/>
+
+                <Button
+                    android:id="@+id/minusOneScoreBtn3"
+                    android:layout_width="30sp"
+                    android:layout_height="wrap_content"
+                    android:text="-"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/playerGoodsBox4"
+            style="@style/playerGoodHolderStyle"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_above="@id/playerGoodsBox2"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/playerGoodsBox1"
+            android:background="@drawable/player_elements_holder_shape">
+
+            <TextView
+                android:id="@+id/playerTextLbl4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/playerTitle"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/playerIDLbl4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@id/playerTextLbl4"
+                android:paddingStart="5dp"
+                android:text="4"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <RelativeLayout
+                android:id="@+id/totalElementCountWrapper4"
+                style="@style/totalElementCountWrapper12Style"
+                android:layout_below="@id/playerIDLbl4"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="12sp"
+                android:layout_marginTop="10sp"
+                >
+
+                <TextView
+                    android:id="@+id/totalHeader4"
+                    style="@style/totalElementCountHeader" />
+
+                <TextView
+                    android:id="@+id/totalElementCount4"
+                    style="@style/totalElementCountText"
+                    android:layout_below="@id/totalHeader4" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/goodsHolder4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/totalElementCountWrapper4"
+                android:layout_centerHorizontal="true">
+
+                <RelativeLayout
+                    android:id="@+id/fireHolder4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/fireImg4"
+                        style="@style/fireStyle"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/fireCount4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/fireImg4"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/waterHolder4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/fireHolder4">
+
+
+                    <ImageView
+                        android:id="@+id/waterImg4"
+                        style="@style/waterStyle"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:id="@+id/waterCount4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/waterImg4"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/windHolder4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/waterHolder4">
+
+                    <ImageView
+                        android:id="@+id/windImg4"
+                        style="@style/windStyle"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/windCount4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/windImg4"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/earthHolder4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/waterHolder4"
+                    android:layout_toEndOf="@id/windHolder4">
+
+                    <ImageView
+                        android:id="@+id/earthImg4"
+                        style="@style/earthStyle"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/earthCount4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/earthImg4"
+                        android:layout_centerInParent="true"
+                        android:text="@string/textPlaceHolder" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/goodsHolder4">
+                <Button
+                    android:id="@+id/addOneScoreBtn4"
+                    android:layout_width="30sp"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:layout_toEndOf="@id/playerScore4"/>
+
+                <TextView
+                    android:id="@+id/playerScore4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/textPlaceHolder"
+                    android:textSize="18sp"
+                    android:layout_toEndOf="@id/minusOneScoreBtn4"
+                    android:padding="1dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="3dp"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"/>
+
+                <Button
+                    android:id="@+id/minusOneScoreBtn4"
+                    android:layout_width="30sp"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/elementsPoolBox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/playerGoodsBox2"
+            android:layout_below="@id/playerGoodsBox1"
+            android:layout_toEndOf="@id/playerGoodsBox3"
+            android:layout_toStartOf="@id/playerGoodsBox4"
+            android:background="@drawable/player_elements_holder_shape"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Elements \n Pool"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+            <ImageButton
+                android:id="@+id/backBtn"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:rotation="180"
+                android:src="@drawable/ic_menu_send" />
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/fireImg"
+                    style="@style/fireStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/waterImg"
+                    style="@style/waterStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/fireImg" />
+
+                <ImageView
+                    android:id="@+id/windImg"
+                    style="@style/windStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/fireImg"
+                    android:layout_below="@+id/fireImg" />
+
+                <ImageView
+                    android:id="@+id/earthImg"
+                    style="@style/earthStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/waterImg"
+                    android:layout_toEndOf="@+id/windImg" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+</FrameLayout>

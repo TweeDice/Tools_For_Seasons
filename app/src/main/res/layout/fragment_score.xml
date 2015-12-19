@@ -1,0 +1,383 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GoodsFragment">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:id="@+id/boardHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/backBtn"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/ic_menu_send" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/boardHolder">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/board" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2">
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center">
+
+                                <android.support.design.widget.FloatingActionButton
+                                    android:id="@+id/minusOneDayBtn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:backgroundTint="@color/colorAccent"
+                                    android:clickable="true"
+                                    android:src="@drawable/ic_fast_rewind_black_24px"
+                                    app:borderWidth="0dp"
+                                    app:elevation="12dp"
+                                    app:rippleColor="@color/colorPrimaryDark" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center">
+
+                                <android.support.design.widget.FloatingActionButton
+                                    android:id="@+id/plusOneDayBtn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:backgroundTint="@color/colorAccent"
+                                    android:clickable="true"
+                                    android:src="@drawable/ic_fast_forward_black_24px"
+                                    app:borderWidth="0dp"
+                                    app:elevation="12dp"
+                                    app:rippleColor="@color/colorPrimaryDark" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/playerScoreSheetFragmentLayout"
+                    style="@style/playerScoreBox">
+
+
+                    <TextView
+                        android:id="@+id/playerTextLbl1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:text="@string/playerTitle"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                        android:id="@+id/playerIDLbl1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@id/playerTextLbl1"
+                        android:paddingStart="5dp"
+                        android:text="1"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <Button
+                        android:id="@+id/playerBonusBtn1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="30sp"
+                        android:layout_toEndOf="@id/playerIDLbl1"
+                        android:background="@drawable/round_button"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:text="0" />
+
+                    <TextView
+                        android:id="@+id/playerScore1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="##"
+                        android:layout_marginEnd="5sp"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@id/playerScore1"
+                        android:layout_marginEnd="30sp">
+                        <Button
+                            android:id="@+id/minusOneScoreBtn1"
+                            style="@style/minusBtnStyle" />
+
+                        <Button
+                            android:id="@+id/addOneScoreBtn1"
+                            style="@style/plusBtnStyle"
+                            android:layout_alignTop="@id/minusOneScoreBtn1"
+                            android:layout_toEndOf="@id/minusOneScoreBtn1" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/playerScoreSheetFragmentLayout2"
+                    style="@style/playerScoreBox">
+
+
+                    <TextView
+                        android:id="@+id/playerTextLbl2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:text="@string/playerTitle"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                        android:id="@+id/playerIDLbl2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@id/playerTextLbl2"
+                        android:paddingStart="5dp"
+                        android:text="2"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <Button
+                        android:id="@+id/playerBonusBtn2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="30sp"
+                        android:layout_toEndOf="@id/playerIDLbl2"
+                        android:background="@drawable/round_button"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:text="0" />
+
+                    <TextView
+                        android:id="@+id/playerScore2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="##"
+                        android:layout_marginEnd="5sp"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@id/playerScore2"
+                        android:layout_marginEnd="30sp">
+                        <Button
+                            android:id="@+id/minusOneScoreBtn2"
+                            style="@style/minusBtnStyle" />
+
+                        <Button
+                            android:id="@+id/addOneScoreBtn2"
+                            style="@style/plusBtnStyle"
+                            android:layout_alignTop="@id/minusOneScoreBtn2"
+                            android:layout_toEndOf="@id/minusOneScoreBtn2" />
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/playerScoreSheetFragmentLayout3"
+                    style="@style/playerScoreBox">
+
+
+                    <TextView
+                        android:id="@+id/playerTextLbl3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:text="@string/playerTitle"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                        android:id="@+id/playerIDLbl3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@id/playerTextLbl3"
+                        android:paddingStart="5dp"
+                        android:text="3"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <Button
+                        android:id="@+id/playerBonusBtn3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="30sp"
+                        android:layout_toEndOf="@id/playerIDLbl3"
+                        android:background="@drawable/round_button"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:text="0" />
+
+                    <TextView
+                        android:id="@+id/playerScore3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="##"
+                        android:layout_marginEnd="5sp"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@id/playerScore3"
+                        android:layout_marginEnd="30sp">
+                        <Button
+                            android:id="@+id/minusOneScoreBtn3"
+                            style="@style/minusBtnStyle" />
+
+                        <Button
+                            android:id="@+id/addOneScoreBtn3"
+                            style="@style/plusBtnStyle"
+                            android:layout_alignTop="@id/minusOneScoreBtn3"
+                            android:layout_toEndOf="@id/minusOneScoreBtn3" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/playerScoreSheetFragmentLayout4"
+                    style="@style/playerScoreBox">
+
+
+                    <TextView
+                        android:id="@+id/playerTextLbl4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:text="@string/playerTitle"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                        android:id="@+id/playerIDLbl4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@id/playerTextLbl4"
+                        android:paddingStart="5dp"
+                        android:text="4"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <Button
+                        android:id="@+id/playerBonusBtn4"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="30sp"
+                        android:layout_toEndOf="@id/playerIDLbl4"
+                        android:background="@drawable/round_button"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:text="0" />
+
+                    <TextView
+                        android:id="@+id/playerScore4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="##"
+                        android:layout_marginEnd="5sp"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@id/playerScore4"
+                        android:layout_marginEnd="30sp">
+                        <Button
+                            android:id="@+id/minusOneScoreBtn4"
+                            style="@style/minusBtnStyle" />
+
+                        <Button
+                            android:id="@+id/addOneScoreBtn4"
+                            style="@style/plusBtnStyle"
+                            android:layout_alignTop="@id/minusOneScoreBtn4"
+                            android:layout_toEndOf="@id/minusOneScoreBtn4" />
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+</FrameLayout>

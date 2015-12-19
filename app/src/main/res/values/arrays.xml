@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<array name="playerNumbers">
+    <item>"2"</item>
+    <item>"3"</item>
+    <item>"4"</item>
+</array>
+<array name="settings">
+    <item>"Sound On"</item>
+    <item>"Keep Screen On"</item>
+</array>
+</resources>

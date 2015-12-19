@@ -1,0 +1,62 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mwaldmeier.toolsforimperialsettlers.PlayerScoreSheetFragment"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/playerScoreSheetFragmentLayout"
+        android:layout_margin="5dp"
+        android:layout_height="100dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Player"
+            android:id="@+id/playerTextLbl1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="#"
+            android:id="@+id/playerIDLbl1"
+            android:layout_alignParentTop="true"
+            android:layout_alignEnd="@id/playerTextLbl1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="##"
+            android:id="@+id/playerScore1"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:id="@+id/addOneScoreBtn1"
+            android:layout_below="@+id/playerIDLbl1"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:id="@+id/minusOneScoreBtn1"
+            android:layout_toEndOf="@id/addOneScoreBtn1"
+            android:layout_alignTop="@id/addOneScoreBtn1"/>
+
+    </RelativeLayout>
+</FrameLayout>
