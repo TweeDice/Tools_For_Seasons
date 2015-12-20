@@ -50,6 +50,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/board" />
+                    <ImageView
+                        android:id="@+id/dayMarker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/board_day_marker"/>
+                    <ImageView
+                        android:id="@+id/yearMarker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/board_year_marker_1"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -68,16 +78,13 @@
                                 android:layout_weight="1"
                                 android:gravity="center">
 
-                                <android.support.design.widget.FloatingActionButton
+                                <ImageButton
                                     android:id="@+id/minusOneDayBtn"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:backgroundTint="@color/colorAccent"
-                                    android:clickable="true"
-                                    android:src="@drawable/ic_fast_rewind_black_24px"
-                                    app:borderWidth="0dp"
-                                    app:elevation="12dp"
-                                    app:rippleColor="@color/colorPrimaryDark" />
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:background="@drawable/round_button_for_board"
+                                    android:gravity="center_vertical|center_horizontal"
+                                    android:src="@drawable/ic_fast_rewind_black_24px" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -86,21 +93,19 @@
                                 android:layout_weight="1"
                                 android:gravity="center">
 
-                                <android.support.design.widget.FloatingActionButton
+                                <ImageButton
                                     android:id="@+id/plusOneDayBtn"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:backgroundTint="@color/colorAccent"
-                                    android:clickable="true"
-                                    android:src="@drawable/ic_fast_forward_black_24px"
-                                    app:borderWidth="0dp"
-                                    app:elevation="12dp"
-                                    app:rippleColor="@color/colorPrimaryDark" />
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:background="@drawable/round_button_for_board"
+                                    android:gravity="center_vertical|center_horizontal"
+                                    android:src="@drawable/ic_fast_forward_black_24px" />
 
                             </LinearLayout>
 
                         </LinearLayout>
                     </RelativeLayout>
+
                 </RelativeLayout>
 
                 <View

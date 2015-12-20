@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,9 @@ public class ScoreFragment extends android.app.Fragment {
     SoundPool sp;
     int soundID;
     List<Button> bonusBtns = new ArrayList<>();
+    ImageView dayMarkerImgView;
+    ImageView yearMarkerImgView;
+    int currentYear;
 
     public ScoreFragment() {
         // Empty constructor required for fragment subclasses
@@ -56,11 +60,13 @@ public class ScoreFragment extends android.app.Fragment {
         setUpPlayerScoreLbls(rootView);
         setUpScoreBtns(rootView);
 
+        dayMarkerImgView = (ImageView) rootView.findViewById(R.id.dayMarker);
+        yearMarkerImgView = (ImageView) rootView.findViewById(R.id.yearMarker);
         rootView.findViewById(R.id.minusOneDayBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 updateDayYear(false);
-                playDropSound();
+
             }
         });
 
@@ -68,7 +74,6 @@ public class ScoreFragment extends android.app.Fragment {
             @Override
             public void onClick(View v) {
                 updateDayYear(true);
-                playDropSound();
             }
         });
 
@@ -208,5 +213,33 @@ public class ScoreFragment extends android.app.Fragment {
 
     private void updateDayYear(boolean forward) {
         ThisGame.changeDay(forward);
+        moveDayMarker(forward);
+    }
+
+    private void moveDayMarker(boolean forward) {
+        int moveDegree = 30;
+        if (!forward) {
+            moveDegree = moveDegree * -1;
+        }
+        dayMarkerImgView.setRotation(dayMarkerImgView.getRotation() + moveDegree);
+        playDropSound();
+        checkYear();
+    }
+
+    private void checkYear() {
+        if (currentYear != ThisGame.getYear()) {
+            changeYear(ThisGame.getYear());
+        }
+    }
+
+    private void changeYear(Integer year) {
+        currentYear = year;
+        if (currentYear == 1) {
+            yearMarkerImgView.setImageResource(R.drawable.board_year_marker_1);
+        } else if (currentYear == 2) {
+            yearMarkerImgView.setImageResource(R.drawable.board_year_marker_2);
+        } else {
+            yearMarkerImgView.setImageResource(R.drawable.board_year_marker_3);
+        }
     }
 }

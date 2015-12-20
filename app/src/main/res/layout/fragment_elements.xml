@@ -163,11 +163,11 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="5dp">
                 <Button
-                    android:id="@+id/addOneScoreBtn1"
+                    android:id="@+id/minusOneScoreBtn1"
                     android:layout_width="30sp"
                     android:layout_height="wrap_content"
-                    android:text="+"
-                    android:layout_toEndOf="@id/playerScore1"/>
+                    android:text="-"
+                    />
 
                 <TextView
                     android:id="@+id/playerScore1"
@@ -183,11 +183,13 @@
                     android:layout_centerVertical="true"/>
 
                 <Button
-                    android:id="@+id/minusOneScoreBtn1"
+                    android:id="@+id/addOneScoreBtn1"
                     android:layout_width="30sp"
                     android:layout_height="wrap_content"
-                    android:text="-"
-                    />
+                    android:text="+"
+                    android:layout_toEndOf="@id/playerScore1"/>
+
+
             </RelativeLayout>
 
         </RelativeLayout>
@@ -344,13 +346,12 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="5dp">
+
                 <Button
-                    android:id="@+id/addOneScoreBtn2"
+                    android:id="@+id/minusOneScoreBtn2"
                     android:layout_width="30sp"
                     android:layout_height="wrap_content"
-                    android:text="+"
-                    android:layout_toEndOf="@id/playerScore2"/>
-
+                    android:text="-"/>
                 <TextView
                     android:id="@+id/playerScore2"
                     android:layout_width="wrap_content"
@@ -365,10 +366,11 @@
                     android:layout_centerVertical="true"/>
 
                 <Button
-                    android:id="@+id/minusOneScoreBtn2"
+                    android:id="@+id/addOneScoreBtn2"
                     android:layout_width="30sp"
                     android:layout_height="wrap_content"
-                    android:text="-"/>
+                    android:text="+"
+                    android:layout_toEndOf="@id/playerScore2"/>
             </RelativeLayout>
 
         </RelativeLayout>
@@ -528,12 +530,12 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:layout_below="@id/goodsHolder3">
+
                 <Button
-                    android:id="@+id/addOneScoreBtn3"
+                    android:id="@+id/minusOneScoreBtn3"
                     android:layout_width="30sp"
                     android:layout_height="wrap_content"
-                    android:text="+"
-                    android:layout_toEndOf="@id/playerScore3"/>
+                    android:text="-"/>
 
                 <TextView
                     android:id="@+id/playerScore3"
@@ -547,12 +549,13 @@
                     android:layout_marginEnd="3dp"
                     android:gravity="center"
                     android:layout_centerVertical="true"/>
-
                 <Button
-                    android:id="@+id/minusOneScoreBtn3"
+                    android:id="@+id/addOneScoreBtn3"
                     android:layout_width="30sp"
                     android:layout_height="wrap_content"
-                    android:text="-"/>
+                    android:text="+"
+                    android:layout_toEndOf="@id/playerScore3"/>
+
             </RelativeLayout>
 
         </RelativeLayout>
@@ -712,13 +715,13 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:layout_below="@id/goodsHolder4">
+
                 <Button
-                    android:id="@+id/addOneScoreBtn4"
+                    android:id="@+id/minusOneScoreBtn4"
                     android:layout_width="30sp"
                     android:layout_height="wrap_content"
-                    android:text="+"
-                    android:layout_toEndOf="@id/playerScore4"/>
-
+                    android:text="-"
+                    />
                 <TextView
                     android:id="@+id/playerScore4"
                     android:layout_width="wrap_content"
@@ -733,11 +736,11 @@
                     android:layout_centerVertical="true"/>
 
                 <Button
-                    android:id="@+id/minusOneScoreBtn4"
+                    android:id="@+id/addOneScoreBtn4"
                     android:layout_width="30sp"
                     android:layout_height="wrap_content"
-                    android:text="-"
-                    />
+                    android:text="+"
+                    android:layout_toEndOf="@id/playerScore4"/>
             </RelativeLayout>
 
         </RelativeLayout>

@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Imperial Settlers"
+                android:text="Seasons"
                 android:textStyle="bold" />
             <View
                 android:layout_width="match_parent"
@@ -42,6 +42,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MWaldmeier.com"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I love Seasons, but it is hard to carry around and can be a mess to play in public places. Now all you need is you Seasons' cards, a few element tokens (for cards that hold elements), and this app.
+            This app is a work in progress. Please help improve it by posting reviews!
+            This app was not developed with either the knowledge or blessing of Régis Bonnessée or Libellud. If they request it to be removed, it will be removed."
+                android:padding="5sp"/>
+
 
 
         </LinearLayout>
