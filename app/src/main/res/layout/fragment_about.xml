@@ -47,14 +47,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="I love Seasons, but it is hard to carry around and can be a mess to play in public places. Now all you need is you Seasons' cards, a few element tokens (for cards that hold elements), and this app.
-            This app is a work in progress. Please help improve it by posting reviews!
-            This app was not developed with either the knowledge or blessing of Régis Bonnessée or Libellud. If they request it to be removed, it will be removed."
+            \n\nThis app is a work in progress. Please help improve it by posting reviews!
+            \n\nThis app was not developed with either the knowledge or blessing of Régis Bonnessée or Libellud. If they request it to be removed, it will be removed."
                 android:padding="5sp"/>
 
-
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please Rate My App"
+                android:id="@+id/rateBtn"
+                android:layout_gravity="center"
+                android:textAllCaps="false"/>
 
         </LinearLayout>
     </ScrollView>
+
+
 
 
 </FrameLayout>

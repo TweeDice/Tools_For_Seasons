@@ -92,12 +92,31 @@ public class Seasons extends Application{
         return Players.get((playerNum-1)).getSumElements();
     }
 
-    public boolean addBonusUsedForPlayer(Integer playerNum) {
-        return Players.get((playerNum -1)).addBonusUsed();
+    public boolean changeBonusUsedForPlayer(Integer playerNum, boolean increase) {
+        boolean didChange = false;
+        if (increase) {
+            didChange = Players.get((playerNum -1)).addBonusUsed();
+        } else {
+            didChange = Players.get((playerNum -1)).removeBonusUsed();
+        }
+        return didChange;
     }
 
     public Integer getBonusPenaltyFroPlayer(Integer playerNum) {
         return Players.get((playerNum - 1)).getBonusPenalty();
+    }
+
+    public Integer getSummonForPlayer(Integer playerNum) {
+        return Players.get((playerNum - 1)).getSummon();
+    }
+    public boolean changeSummonForPlayer(Integer playerNum, boolean increase) {
+        boolean didChagne = false;
+        if (increase) {
+            didChagne = Players.get((playerNum - 1)).addSummon();
+        } else {
+            didChagne = Players.get((playerNum - 1)).decreaseSummon();
+        }
+        return didChagne;
     }
 
     private class Player {
@@ -106,6 +125,7 @@ public class Seasons extends Application{
         private Integer Score;
         private View goodsView;
         private int bonusesUsed;
+        private Integer Summon;
 
         public Player(Integer id) {
             this.ID = id;
@@ -116,6 +136,27 @@ public class Seasons extends Application{
             this.Score = 0;
             this.goodsView = null;
             bonusesUsed = 0;
+            this.Summon = 0;
+        }
+
+        public Integer getSummon() {
+            return Summon;
+        }
+        private boolean addSummon() {
+            boolean increased = false;
+                if (Summon < 15) {
+                    Summon += 1;
+                    increased = true;
+                }
+            return increased;
+        }
+        private boolean decreaseSummon() {
+            boolean decreased = false;
+            if (Summon > 0) {
+                Summon -= 1;
+                decreased = true;
+            }
+            return decreased;
         }
 
         public Integer getBonusPenalty() {
@@ -129,6 +170,15 @@ public class Seasons extends Application{
                 didIncreased = true;
             }
             return didIncreased;
+        }
+
+        public boolean removeBonusUsed() {
+            boolean didDecress = false;
+            if (bonusesUsed > 0) {
+                bonusesUsed -= 1;
+                didDecress = true;
+            }
+            return didDecress;
         }
 
         public Integer getID() {

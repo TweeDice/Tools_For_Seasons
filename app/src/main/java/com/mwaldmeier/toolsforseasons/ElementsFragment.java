@@ -1,6 +1,8 @@
 package com.mwaldmeier.toolsforseasons;
 
 import android.content.ClipData;
+import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -26,6 +28,8 @@ public class ElementsFragment extends android.app.Fragment {
     SoundPool sp;
     int soundID;
     List<TextView> playerScoreLbls = new ArrayList<>();
+    MainActivity mainActivity;
+    Context appContext;
 
     public ElementsFragment() {
         // Empty constructor required for fragment subclasses
@@ -37,16 +41,17 @@ public class ElementsFragment extends android.app.Fragment {
         View rootView = inflater.inflate(R.layout.fragment_elements, container, false);
 
         ThisGame = ((Seasons) getActivity().getApplication());
+        mainActivity = (MainActivity) getActivity();
+        appContext = getActivity().getApplicationContext();
 
         //set up drop sound
-        sp = ((MainActivity) getActivity()).getSoundPool();
-        soundID = sp.load(getActivity().getApplicationContext(), R.raw.blop, 1);
+        sp = (mainActivity).getSoundPool();
+        soundID = sp.load(appContext, R.raw.blop, 1);
 
         ((ImageButton) rootView.findViewById(R.id.backBtn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity activity = (MainActivity) getActivity();
-                activity.goToPage(1);
+                mainActivity.goToPage(1);
             }
         });
 
@@ -78,8 +83,6 @@ public class ElementsFragment extends android.app.Fragment {
                 PlayerViews.get(3).setOnDragListener(new MyDragListenerForGoodsPool());
             }
         }
-
-
 
         setListForImgs(rootView);
         setGoodCountsForAllPlayers();
@@ -115,7 +118,13 @@ public class ElementsFragment extends android.app.Fragment {
     }
 
     private void setSumElementCountLblForPlayerView(int playterNum) {
-        PlayerTotalElementsViews.get((playterNum-1)).setText(ThisGame.getSumElementsForPlayer(playterNum).toString());
+        Integer sum = ThisGame.getSumElementsForPlayer(playterNum);
+        PlayerTotalElementsViews.get((playterNum - 1)).setText(sum.toString());
+        if (sum >= 7) {
+            PlayerTotalElementsViews.get((playterNum - 1)).setTextColor(Color.RED);
+        } else {
+            PlayerTotalElementsViews.get((playterNum - 1)).setTextColor(Color.GRAY);
+        }
     }
 
     private void setListForImgs(View rootView) {
@@ -284,21 +293,24 @@ public class ElementsFragment extends android.app.Fragment {
                     playerNum = getPlayerNumFromView(containerView);
 
                     if (! playerNum.equals(oldPlayerNum)) {
-
-                        goodType = getGoodTypeFromImg(imgView);
-
-                        ThisGame.addOneElementToPlayer(playerNum, goodType);
-                        setGoodCountLblForPlayerView(playerNum);
-                        setSumElementCountLblForPlayerView(playerNum);
-
                         //test if this came from another player
-                        if (oldPlayerNum != null) {
-                            ThisGame.removeOneElementFromPlayer(oldPlayerNum, goodType);
-                            setGoodCountLblForPlayerView(oldPlayerNum);
-                            setSumElementCountLblForPlayerView(oldPlayerNum);
+                        if (oldPlayerNum != null && mainActivity.getP2POn().equals("1") || oldPlayerNum == null) {
+
+                            goodType = getGoodTypeFromImg(imgView);
+
+                            ThisGame.addOneElementToPlayer(playerNum, goodType);
+                            setGoodCountLblForPlayerView(playerNum);
+                            setSumElementCountLblForPlayerView(playerNum);
+
+                            //test if this came from another player
+                            if (oldPlayerNum != null && mainActivity.getP2POn().equals("1")) {
+                                ThisGame.removeOneElementFromPlayer(oldPlayerNum, goodType);
+                                setGoodCountLblForPlayerView(oldPlayerNum);
+                                setSumElementCountLblForPlayerView(oldPlayerNum);
+                            }
+                            playDropSound();
                         }
                     }
-                    playDropSound();
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:
                     v.setBackgroundDrawable(normalShape);
@@ -373,46 +385,37 @@ public class ElementsFragment extends android.app.Fragment {
             }
         }
 
-        Integer i = 1;
-        for (Button plusBtn :
-                plusBtns) {
-            final Integer finalI = i;
-            plusBtn.setOnClickListener(new View.OnClickListener() {
+        for (int i=0;i<plusBtns.size();i++) {
+            final int playerNum = i +1 ;
+            plusBtns.get(i).setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    ThisGame.addOneToScoreFor(finalI);
-                    playDropSound();
+                    ThisGame.addOneToScoreFor(playerNum);
+                    refreshScores();
+                }
+            });
+            minusBtns.get(i).setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    ThisGame.removeOneFromScoreFor(playerNum);
                     refreshScores();
 
                 }
             });
-            i += 1;
+
         }
-
-        i = 1;
-        for (Button minusBtn :
-                minusBtns) {
-            final Integer finalI = i;
-            minusBtn.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    if (ThisGame.removeOneFromScoreFor(finalI)) {
-                        playDropSound();
-                        refreshScores();
-
-                    }
-                }
-            });
-            i += 1;
-        }
-
     }
 
     private void refreshScores() {
         Integer i = 1;
-
         for (TextView playerScore :
                 playerScoreLbls) {
-            playerScore.setText(ThisGame.getPlayerScoreFor(i).toString());
+            Integer score = ThisGame.getPlayerScoreFor(i);
+            playerScore.setText(score.toString());
             i += 1;
+        }
+    }
+    private void playDropSound() {
+        if (mainActivity.getSoundOn().equals("1")) {
+            sp.play(soundID, 1, 1, 0, 0, 1);
         }
     }
     private void setUpPlayerScoreLbls(View rootView) {
@@ -425,10 +428,5 @@ public class ElementsFragment extends android.app.Fragment {
             }
         }
         refreshScores();
-    }
-    private void playDropSound() {
-        if (((MainActivity) getActivity()).getSoundOn().equals("1")) {
-            sp.play(soundID, 1, 1, 0, 0, 1);
-        }
     }
 }

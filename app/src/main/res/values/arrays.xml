@@ -8,5 +8,6 @@
 <array name="settings">
     <item>"Sound On"</item>
     <item>"Keep Screen On"</item>
+    <item>"P2P Elements On"</item>
 </array>
 </resources>

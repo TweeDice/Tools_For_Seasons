@@ -9,33 +9,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-
-        <LinearLayout
-            android:id="@+id/boardHolder"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/backBtn"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/backBtn"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="3dp"
-                android:src="@drawable/ic_menu_send" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray" />
-        </LinearLayout>
+            android:layout_gravity="end"
+            android:layout_marginEnd="50dp"
+            android:layout_marginTop="3dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_menu_send" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/boardHolder">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,26 +31,32 @@
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp">
 
                     <ImageView
+                        android:id="@+id/boardImg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/board" />
+
                     <ImageView
                         android:id="@+id/dayMarker"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/board_day_marker"/>
+                        android:src="@drawable/board_day_marker" />
+
                     <ImageView
                         android:id="@+id/yearMarker"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/board_year_marker_1"/>
+                        android:src="@drawable/board_year_marker_1" />
 
                     <RelativeLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0sp"
                         android:layout_height="match_parent"
+                        android:layout_alignEnd="@id/boardImg"
+                        android:layout_alignStart="@id/boardImg"
                         android:layout_centerInParent="true">
 
                         <LinearLayout
@@ -140,38 +133,81 @@
 
                     <Button
                         android:id="@+id/playerBonusBtn1"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="30sp"
-                        android:layout_toEndOf="@id/playerIDLbl1"
-                        android:background="@drawable/round_button"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="0" />
-
-                    <TextView
-                        android:id="@+id/playerScore1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:text="##"
-                        android:layout_marginEnd="5sp"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        style="@style/bonusBtnStyle"
+                        android:layout_below="@id/playerTextLbl1" />
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toStartOf="@id/playerScore1"
-                        android:layout_marginEnd="30sp">
+                        android:id="@+id/playerSummonHolder1"
+                        style="@style/summonHolder"
+                        android:layout_toEndOf="@id/playerBonusBtn1">
+
+                        <TextView
+                            android:id="@+id/playerSummonTitle1"
+
+                            style="@style/summonTrackTitle" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0sp"
+                            android:layout_below="@id/playerSummonTitle1">
+
+                            <Button
+                                android:id="@+id/minusOneSummonBtn1"
+                                style="@style/scoreBtns"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/playerSummon1"
+                                android:text="@string/textPlaceHolder"
+                                android:layout_toEndOf="@id/minusOneSummonBtn1"
+                                style="@style/summonAmount" />
+
+                            <Button
+                                android:id="@+id/addOneSummonBtn1"
+                                style="@style/scoreBtns"
+                                android:layout_toEndOf="@id/playerSummon1"
+                                android:text="+" />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/playerScoreHolder1"
+                        android:layout_toEndOf="@id/playerSummonHolder1"
+                        style="@style/scoreHolder"
+                        >
+                        <TextView
+                            android:id="@+id/playerScoreTitle1"
+
+                            style="@style/scoreTitle" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0sp"
+                            android:layout_below="@id/playerScoreTitle1">
+
                         <Button
                             android:id="@+id/minusOneScoreBtn1"
-                            style="@style/minusBtnStyle" />
+                            style="@style/scoreBtns"
+                            android:text="-" />
+
+                        <TextView
+                            android:id="@+id/playerScore1"
+                            android:layout_toEndOf="@id/minusOneScoreBtn1"
+                            android:text="@string/textPlaceHolder"
+                            style="@style/scoreAmount" />
 
                         <Button
                             android:id="@+id/addOneScoreBtn1"
-                            style="@style/plusBtnStyle"
-                            android:layout_alignTop="@id/minusOneScoreBtn1"
-                            android:layout_toEndOf="@id/minusOneScoreBtn1" />
+                            style="@style/scoreBtns"
+                            android:layout_toEndOf="@id/playerScore1"
+                            android:text="+" />
+                            </RelativeLayout>
+
+
                     </RelativeLayout>
                 </RelativeLayout>
 
@@ -206,38 +242,81 @@
 
                     <Button
                         android:id="@+id/playerBonusBtn2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="30sp"
-                        android:layout_toEndOf="@id/playerIDLbl2"
-                        android:background="@drawable/round_button"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="0" />
-
-                    <TextView
-                        android:id="@+id/playerScore2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:text="##"
-                        android:layout_marginEnd="5sp"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        style="@style/bonusBtnStyle"
+                        android:layout_below="@id/playerTextLbl2" />
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toStartOf="@id/playerScore2"
-                        android:layout_marginEnd="30sp">
-                        <Button
-                            android:id="@+id/minusOneScoreBtn2"
-                            style="@style/minusBtnStyle" />
+                        android:id="@+id/playerSummonHolder2"
+                        style="@style/summonHolder"
+                        android:layout_toEndOf="@id/playerBonusBtn2">
 
-                        <Button
-                            android:id="@+id/addOneScoreBtn2"
-                            style="@style/plusBtnStyle"
-                            android:layout_alignTop="@id/minusOneScoreBtn2"
-                            android:layout_toEndOf="@id/minusOneScoreBtn2" />
+                        <TextView
+                            android:id="@+id/playerSummonTitle2"
+
+                            style="@style/summonTrackTitle" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0sp"
+                            android:layout_below="@id/playerSummonTitle2">
+
+                            <Button
+                                android:id="@+id/minusOneSummonBtn2"
+                                style="@style/scoreBtns"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/playerSummon2"
+                                android:text="@string/textPlaceHolder"
+                                android:layout_toEndOf="@id/minusOneSummonBtn2"
+                                style="@style/summonAmount" />
+
+                            <Button
+                                android:id="@+id/addOneSummonBtn2"
+                                style="@style/scoreBtns"
+                                android:layout_toEndOf="@id/playerSummon2"
+                                android:text="+" />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/playerScoreHolder2"
+                        android:layout_toEndOf="@id/playerSummonHolder2"
+                        style="@style/scoreHolder"
+                        >
+                        <TextView
+                            android:id="@+id/playerScoreTitle2"
+
+                            style="@style/scoreTitle" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0sp"
+                            android:layout_below="@id/playerScoreTitle2">
+
+                            <Button
+                                android:id="@+id/minusOneScoreBtn2"
+                                style="@style/scoreBtns"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/playerScore2"
+                                android:layout_toEndOf="@id/minusOneScoreBtn2"
+                                android:text="@string/textPlaceHolder"
+                                style="@style/scoreAmount" />
+
+                            <Button
+                                android:id="@+id/addOneScoreBtn2"
+                                style="@style/scoreBtns"
+                                android:layout_toEndOf="@id/playerScore2"
+                                android:text="+" />
+                        </RelativeLayout>
+
+
                     </RelativeLayout>
 
 
@@ -274,38 +353,81 @@
 
                     <Button
                         android:id="@+id/playerBonusBtn3"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="30sp"
-                        android:layout_toEndOf="@id/playerIDLbl3"
-                        android:background="@drawable/round_button"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="0" />
-
-                    <TextView
-                        android:id="@+id/playerScore3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:text="##"
-                        android:layout_marginEnd="5sp"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        style="@style/bonusBtnStyle"
+                        android:layout_below="@id/playerTextLbl3" />
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toStartOf="@id/playerScore3"
-                        android:layout_marginEnd="30sp">
-                        <Button
-                            android:id="@+id/minusOneScoreBtn3"
-                            style="@style/minusBtnStyle" />
+                        android:id="@+id/playerSummonHolder3"
+                        style="@style/summonHolder"
+                        android:layout_toEndOf="@id/playerBonusBtn3">
 
-                        <Button
-                            android:id="@+id/addOneScoreBtn3"
-                            style="@style/plusBtnStyle"
-                            android:layout_alignTop="@id/minusOneScoreBtn3"
-                            android:layout_toEndOf="@id/minusOneScoreBtn3" />
+                        <TextView
+                            android:id="@+id/playerSummonTitle3"
+
+                            style="@style/summonTrackTitle" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0sp"
+                            android:layout_below="@id/playerSummonTitle3">
+
+                            <Button
+                                android:id="@+id/minusOneSummonBtn3"
+                                style="@style/scoreBtns"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/playerSummon3"
+                                android:text="@string/textPlaceHolder"
+                                android:layout_toEndOf="@id/minusOneSummonBtn3"
+                                style="@style/summonAmount" />
+
+                            <Button
+                                android:id="@+id/addOneSummonBtn3"
+                                style="@style/scoreBtns"
+                                android:layout_toEndOf="@id/playerSummon3"
+                                android:text="+" />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/playerScoreHolder3"
+                        android:layout_toEndOf="@id/playerSummonHolder3"
+                        style="@style/scoreHolder"
+                        >
+                        <TextView
+                            android:id="@+id/playerScoreTitle3"
+
+                            style="@style/scoreTitle" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0sp"
+                            android:layout_below="@id/playerScoreTitle3">
+
+                            <Button
+                                android:id="@+id/minusOneScoreBtn3"
+                                style="@style/scoreBtns"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/playerScore3"
+                                android:layout_toEndOf="@id/minusOneScoreBtn3"
+                                android:text="@string/textPlaceHolder"
+                                style="@style/scoreAmount" />
+
+                            <Button
+                                android:id="@+id/addOneScoreBtn3"
+                                style="@style/scoreBtns"
+                                android:layout_toEndOf="@id/playerScore3"
+                                android:text="+" />
+                        </RelativeLayout>
+
+
                     </RelativeLayout>
                 </RelativeLayout>
 
@@ -340,38 +462,81 @@
 
                     <Button
                         android:id="@+id/playerBonusBtn4"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="30sp"
-                        android:layout_toEndOf="@id/playerIDLbl4"
-                        android:background="@drawable/round_button"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="0" />
-
-                    <TextView
-                        android:id="@+id/playerScore4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:text="##"
-                        android:layout_marginEnd="5sp"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        style="@style/bonusBtnStyle"
+                        android:layout_below="@id/playerTextLbl4" />
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toStartOf="@id/playerScore4"
-                        android:layout_marginEnd="30sp">
-                        <Button
-                            android:id="@+id/minusOneScoreBtn4"
-                            style="@style/minusBtnStyle" />
+                        android:id="@+id/playerSummonHolder4"
+                        style="@style/summonHolder"
+                        android:layout_toEndOf="@id/playerBonusBtn4">
 
-                        <Button
-                            android:id="@+id/addOneScoreBtn4"
-                            style="@style/plusBtnStyle"
-                            android:layout_alignTop="@id/minusOneScoreBtn4"
-                            android:layout_toEndOf="@id/minusOneScoreBtn4" />
+                        <TextView
+                            android:id="@+id/playerSummonTitle4"
+
+                            style="@style/summonTrackTitle" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0sp"
+                            android:layout_below="@id/playerSummonTitle4">
+
+                            <Button
+                                android:id="@+id/minusOneSummonBtn4"
+                                style="@style/scoreBtns"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/playerSummon4"
+                                android:text="@string/textPlaceHolder"
+                                android:layout_toEndOf="@id/minusOneSummonBtn4"
+                                style="@style/summonAmount" />
+
+                            <Button
+                                android:id="@+id/addOneSummonBtn4"
+                                style="@style/scoreBtns"
+                                android:layout_toEndOf="@id/playerSummon4"
+                                android:text="+" />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/playerScoreHolder4"
+                        android:layout_toEndOf="@id/playerSummonHolder4"
+                        style="@style/scoreHolder"
+                        >
+                        <TextView
+                            android:id="@+id/playerScoreTitle4"
+
+                            style="@style/scoreTitle" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0sp"
+                            android:layout_below="@id/playerScoreTitle4">
+
+                            <Button
+                                android:id="@+id/minusOneScoreBtn4"
+                                style="@style/scoreBtns"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/playerScore4"
+                                android:layout_toEndOf="@id/minusOneScoreBtn4"
+                                android:text="@string/textPlaceHolder"
+                                style="@style/scoreAmount" />
+
+                            <Button
+                                android:id="@+id/addOneScoreBtn4"
+                                style="@style/scoreBtns"
+                                android:layout_toEndOf="@id/playerScore4"
+                                android:text="+" />
+                        </RelativeLayout>
+
+
                     </RelativeLayout>
 
 

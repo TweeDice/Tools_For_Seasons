@@ -23,6 +23,7 @@ import java.util.List;
 public class ScoreFragment extends android.app.Fragment {
 
     List<TextView> playerScoreLbls = new ArrayList<>();
+    List<TextView> playerSummonLbls = new ArrayList<>();
     Seasons ThisGame;
     SoundPool sp;
     int soundID;
@@ -30,6 +31,7 @@ public class ScoreFragment extends android.app.Fragment {
     ImageView dayMarkerImgView;
     ImageView yearMarkerImgView;
     int currentYear;
+    MainActivity mainActivity;
 
     public ScoreFragment() {
         // Empty constructor required for fragment subclasses
@@ -39,23 +41,31 @@ public class ScoreFragment extends android.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_score, container, false);
-        ThisGame = ((Seasons) getActivity().getApplication());
+        ThisGame = (Seasons) getActivity().getApplication();
+        mainActivity = (MainActivity) getActivity();
 
         //set up drop sound
-        sp = ((MainActivity) getActivity()).getSoundPool();
+        sp = mainActivity.getSoundPool();
         soundID = sp.load(getActivity().getApplicationContext(), R.raw.blop, 1);
 
         ((ImageButton) rootView.findViewById(R.id.backBtn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity activity = (MainActivity) getActivity();
-                activity.goToPage(2);
+                mainActivity.goToPage(2);
             }
         });
 
+//TODO clean
         //Hide player 3 & 4
         ((RelativeLayout) rootView.findViewById(R.id.playerScoreSheetFragmentLayout3)).setVisibility(View.GONE);
         ((RelativeLayout) rootView.findViewById(R.id.playerScoreSheetFragmentLayout4)).setVisibility(View.GONE);
+        if (ThisGame.getNumPlayers() >= 3) {
+            ((RelativeLayout) rootView.findViewById(R.id.playerScoreSheetFragmentLayout3)).setVisibility(View.VISIBLE);
+
+            if (ThisGame.getNumPlayers() == 4) {
+                ((RelativeLayout) rootView.findViewById(R.id.playerScoreSheetFragmentLayout4)).setVisibility(View.VISIBLE);
+            }
+        }
 
         setUpPlayerScoreLbls(rootView);
         setUpScoreBtns(rootView);
@@ -79,14 +89,21 @@ public class ScoreFragment extends android.app.Fragment {
 
         setUpBonusBtns(rootView);
 
+        moveDayMarker();
         return rootView;
     }
 
     private void setUpBonusBtns(View rootView) {
         bonusBtns.add((Button) rootView.findViewById(R.id.playerBonusBtn1));
         bonusBtns.add((Button) rootView.findViewById(R.id.playerBonusBtn2));
-        bonusBtns.add((Button) rootView.findViewById(R.id.playerBonusBtn3));
-        bonusBtns.add((Button) rootView.findViewById(R.id.playerBonusBtn4));
+        if (ThisGame.getNumPlayers() >= 3) {
+            bonusBtns.add((Button) rootView.findViewById(R.id.playerBonusBtn3));
+            if (ThisGame.getNumPlayers() == 4) {
+                bonusBtns.add((Button) rootView.findViewById(R.id.playerBonusBtn4));
+            }
+        }
+
+
         int i = 1;
         for (Button button :
                 bonusBtns) {
@@ -97,20 +114,33 @@ public class ScoreFragment extends android.app.Fragment {
                     bonusBtnClick(finalI);
                 }
             });
+            button.setText(ThisGame.getBonusPenaltyFroPlayer(finalI).toString());
             i += 1;
         }
+
+
     }
 
     private void bonusBtnClick(final Integer playerNum) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(((MainActivity) getActivity()));
+        AlertDialog.Builder alert = new AlertDialog.Builder(mainActivity);
         alert
                 .setTitle("Take Bonus Action For Player " + playerNum.toString() + "?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        if (ThisGame.addBonusUsedForPlayer(playerNum)) {
+                        if (ThisGame.changeBonusUsedForPlayer(playerNum, true)) {
                             updatePlayerBonus(playerNum);
                         } else {
-                            Toast.makeText(getActivity(), "You cannot use Bonus Actions more than 4 times.",
+                            Toast.makeText(getActivity(), "You cannot use Bonus Actions more than 3 times.",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                })
+                .setNeutralButton("Remove One", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        if (ThisGame.changeBonusUsedForPlayer(playerNum, false)) {
+                            updatePlayerBonus(playerNum);
+                        } else {
+                            Toast.makeText(getActivity(), "You have no bonuses to remove.",
                                     Toast.LENGTH_LONG).show();
                         }
                     }
@@ -126,23 +156,7 @@ public class ScoreFragment extends android.app.Fragment {
     }
 
     private void updatePlayerBonus(Integer playerNum) {
-        bonusBtns.get((playerNum-1)).setText(ThisGame.getBonusPenaltyFroPlayer(playerNum).toString());
-    }
-
-    private void setUpPlayerScoreLbls(View rootView) {
-        playerScoreLbls.add((TextView) rootView.findViewById(R.id.playerScore1));
-        playerScoreLbls.add((TextView) rootView.findViewById(R.id.playerScore2));
-        if (ThisGame.getNumPlayers() >= 3) {
-            playerScoreLbls.add((TextView) rootView.findViewById(R.id.playerScore3));
-            ((RelativeLayout) rootView.findViewById(R.id.playerScoreSheetFragmentLayout3)).setVisibility(View.VISIBLE);
-            if (ThisGame.getNumPlayers() == 4) {
-                playerScoreLbls.add((TextView) rootView.findViewById(R.id.playerScore4));
-                ((RelativeLayout) rootView.findViewById(R.id.playerScoreSheetFragmentLayout4)).setVisibility(View.VISIBLE);
-            }
-        }
-
-        refreshScores();
-
+        bonusBtns.get((playerNum - 1)).setText(ThisGame.getBonusPenaltyFroPlayer(playerNum).toString());
     }
 
     private void refreshScores() {
@@ -158,70 +172,75 @@ public class ScoreFragment extends android.app.Fragment {
     private void setUpScoreBtns(View rootView) {
         List<Button> plusBtns = new ArrayList<>();
         List<Button> minusBtns = new ArrayList<>();
+        List<Button> plusSummonBtns = new ArrayList<>();
+        List<Button> minusSummonBtns = new ArrayList<>();
 
         plusBtns.add((Button) rootView.findViewById(R.id.addOneScoreBtn1));
         plusBtns.add((Button) rootView.findViewById(R.id.addOneScoreBtn2));
         minusBtns.add((Button) rootView.findViewById(R.id.minusOneScoreBtn1));
         minusBtns.add((Button) rootView.findViewById(R.id.minusOneScoreBtn2));
+        plusSummonBtns.add((Button) rootView.findViewById(R.id.addOneSummonBtn1));
+        plusSummonBtns.add((Button) rootView.findViewById(R.id.addOneSummonBtn2));
+        minusSummonBtns.add((Button) rootView.findViewById(R.id.minusOneSummonBtn1));
+        minusSummonBtns.add((Button) rootView.findViewById(R.id.minusOneSummonBtn2));
         if (ThisGame.getNumPlayers() >= 3) {
             plusBtns.add((Button) rootView.findViewById(R.id.addOneScoreBtn3));
             minusBtns.add((Button) rootView.findViewById(R.id.minusOneScoreBtn3));
+            plusSummonBtns.add((Button) rootView.findViewById(R.id.addOneSummonBtn3));
+            minusSummonBtns.add((Button) rootView.findViewById(R.id.minusOneSummonBtn3));
             if (ThisGame.getNumPlayers() == 4) {
                 plusBtns.add((Button) rootView.findViewById(R.id.addOneScoreBtn4));
                 minusBtns.add((Button) rootView.findViewById(R.id.minusOneScoreBtn4));
+                plusSummonBtns.add((Button) rootView.findViewById(R.id.addOneSummonBtn4));
+                minusSummonBtns.add((Button) rootView.findViewById(R.id.minusOneSummonBtn4));
             }
         }
 
-        Integer i = 1;
-        for (Button plusBtn :
-                plusBtns) {
-            final Integer finalI = i;
-            plusBtn.setOnClickListener(new View.OnClickListener() {
+        for (int i=0;i<plusBtns.size();i++) {
+            final int playerNum = i +1 ;
+            plusBtns.get(i).setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    ThisGame.addOneToScoreFor(finalI);
-                    playDropSound();
+                    ThisGame.addOneToScoreFor(playerNum);
+                    refreshScores();
+                }
+            });
+            minusBtns.get(i).setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    ThisGame.removeOneFromScoreFor(playerNum);
                     refreshScores();
 
                 }
             });
-            i += 1;
-        }
-
-        i = 1;
-        for (Button minusBtn :
-                minusBtns) {
-            final Integer finalI = i;
-            minusBtn.setOnClickListener(new View.OnClickListener() {
+            plusSummonBtns.get(i).setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (ThisGame.removeOneFromScoreFor(finalI)) {
-                        playDropSound();
-                        refreshScores();
+                    ThisGame.changeSummonForPlayer(playerNum, true);
+                    refreshSummons();
 
-                    }
                 }
             });
-            i += 1;
+            minusSummonBtns.get(i).setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    ThisGame.changeSummonForPlayer(playerNum, false);
+                    refreshSummons();
+                }
+            });
         }
-
     }
 
     private void playDropSound() {
-        if (((MainActivity) getActivity()).getSoundOn().equals("1")) {
+        if (mainActivity.getSoundOn().equals("1")) {
             sp.play(soundID, 1, 1, 0, 0, 1);
         }
     }
 
     private void updateDayYear(boolean forward) {
         ThisGame.changeDay(forward);
-        moveDayMarker(forward);
+        moveDayMarker();
     }
 
-    private void moveDayMarker(boolean forward) {
-        int moveDegree = 30;
-        if (!forward) {
-            moveDegree = moveDegree * -1;
-        }
-        dayMarkerImgView.setRotation(dayMarkerImgView.getRotation() + moveDegree);
+    private void moveDayMarker() {
+        float dayDegrees = (30*(ThisGame.getDay()-1));
+        dayMarkerImgView.setRotation(dayDegrees);
         playDropSound();
         checkYear();
     }
@@ -241,5 +260,29 @@ public class ScoreFragment extends android.app.Fragment {
         } else {
             yearMarkerImgView.setImageResource(R.drawable.board_year_marker_3);
         }
+    }
+    private void refreshSummons() {
+        Integer i = 1;
+        for (TextView playerScore :
+                playerSummonLbls) {
+            playerScore.setText(ThisGame.getSummonForPlayer(i).toString());
+            i += 1;
+        }
+    }
+    private void setUpPlayerScoreLbls(View rootView) {
+        playerScoreLbls.add((TextView) rootView.findViewById(R.id.playerScore1));
+        playerScoreLbls.add((TextView) rootView.findViewById(R.id.playerScore2));
+        playerSummonLbls.add((TextView) rootView.findViewById(R.id.playerSummon1));
+        playerSummonLbls.add((TextView) rootView.findViewById(R.id.playerSummon2));
+        if (ThisGame.getNumPlayers() >= 3) {
+            playerScoreLbls.add((TextView) rootView.findViewById(R.id.playerScore3));
+            playerSummonLbls.add((TextView) rootView.findViewById(R.id.playerSummon3));
+            if (ThisGame.getNumPlayers() == 4) {
+                playerScoreLbls.add((TextView) rootView.findViewById(R.id.playerScore4));
+                playerSummonLbls.add((TextView) rootView.findViewById(R.id.playerSummon4));
+            }
+        }
+        refreshScores();
+        refreshSummons();
     }
 }

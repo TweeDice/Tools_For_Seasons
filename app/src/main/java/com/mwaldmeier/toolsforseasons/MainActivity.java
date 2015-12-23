@@ -3,11 +3,14 @@ package com.mwaldmeier.toolsforseasons;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +22,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -27,8 +32,12 @@ public class MainActivity extends AppCompatActivity
     //settings variables
     final String SOUND_ON = "SOUND_ON";
     final String SCREEN_ALWAYS_ON = "SCREEN_ALWAYS_ON";
+    final String P2P_ON = "P2P_ON";
+    final String PLAYER_NAMES = "PLAYER_NAMES";
+    final String TIMES_OPENED = "TIMES_OPENED";
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +45,7 @@ public class MainActivity extends AppCompatActivity
 
         ThisGame = ((Seasons) this.getApplication());
 
+        //setup defalut game of 4
         ThisGame.setUpNewGame(4);
 
         sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
@@ -54,7 +64,7 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
 
@@ -68,8 +78,57 @@ public class MainActivity extends AppCompatActivity
         if (getScreenAlwaysOn() == null) {
             setSetting(SCREEN_ALWAYS_ON, "1");
         }
+        if (getP2POn() == null) {
+            setSetting(P2P_ON, "1");
+        }
+        setSetting(TIMES_OPENED, (getTimesUsed() + 1));
+        if (getTimesUsed() == 5) {
+            createRateAppAlert();
+        }
     }
 
+    private void createRateAppAlert() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert
+                .setTitle("Please rate my app.")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        goToRatePage();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        // Canceled.
+                    }
+                });
+        alert.show();
+    }
+
+    public void goToRatePage() {
+        Uri uri = Uri.parse("market://details?id=" + this.getPackageName());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        // To count with Play market backstack, After pressing back button,
+        // to taken back to our application, we need to add following flags to intent.
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        try {
+            startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=" + this.getPackageName())));
+        }
+    }
+
+    private int getTimesUsed() {
+        return preferences.getInt(TIMES_OPENED, 0);
+    }
+    public String getP2POn() {
+        return preferences.getString(P2P_ON, null);
+    }
+    public Set<String> getPlayerNames() {
+        return preferences.getStringSet(PLAYER_NAMES, null);
+    }
     public String getScreenAlwaysOn() {
         return preferences.getString(SCREEN_ALWAYS_ON, null);
     }
@@ -83,6 +142,16 @@ public class MainActivity extends AppCompatActivity
         if (setting.equals(SCREEN_ALWAYS_ON)) {
             setScreenSetting(value);
         }
+    }
+    private void setSetting(String setting, int value) {
+        editor.putInt(setting, value);
+        editor.apply();
+    }
+    public void addNameToSettings(String name) {
+        Set<String> set = getPlayerNames();
+        set.add(name);
+        editor.putStringSet(PLAYER_NAMES, set);
+        editor.commit();
     }
 
     public SoundPool getSoundPool() {
@@ -130,7 +199,7 @@ public class MainActivity extends AppCompatActivity
                 .setTitle("Number of Players?")
                 .setItems(R.array.playerNumbers, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        ThisGame.setUpNewGame((which+2));
+                        ThisGame.setUpNewGame((which + 2));
                         setActiveFragment(new ScoreFragment());
                     }
                 })
@@ -145,7 +214,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void changeSettingsAlert() {
-        boolean selected[] = new boolean[2];
+        boolean selected[] = new boolean[3];
         if (getSoundOn().equals("1")) {
             selected[0] = true;
         } else {
@@ -155,6 +224,11 @@ public class MainActivity extends AppCompatActivity
             selected[1] = true;
         } else {
             selected[1] = false;
+        }
+        if (getP2POn().equals("1")) {
+            selected[2] = true;
+        } else {
+            selected[2] = false;
         }
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert
@@ -172,6 +246,9 @@ public class MainActivity extends AppCompatActivity
                                         break;
                                     case 1:
                                         checkedSetting = SCREEN_ALWAYS_ON;
+                                        break;
+                                    case 2:
+                                        checkedSetting = P2P_ON;
                                         break;
                                 }
 
@@ -239,6 +316,7 @@ public class MainActivity extends AppCompatActivity
         if (fragment != null) {
             setActiveFragment(fragment);
         }
+        navigationView.getMenu().getItem(pageNum-1).setChecked(true);
     }
 
     private void setScreenSetting(String screenSetting) {
@@ -248,4 +326,6 @@ public class MainActivity extends AppCompatActivity
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
     }
+
+
 }
