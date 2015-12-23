@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +31,7 @@ public class ScoreFragment extends android.app.Fragment {
     ImageView yearMarkerImgView;
     int currentYear;
     MainActivity mainActivity;
+    ImageButton hideAppBarBtn;
 
     public ScoreFragment() {
         // Empty constructor required for fragment subclasses
@@ -40,6 +40,7 @@ public class ScoreFragment extends android.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.fragment_score, container, false);
         ThisGame = (Seasons) getActivity().getApplication();
         mainActivity = (MainActivity) getActivity();
@@ -54,16 +55,23 @@ public class ScoreFragment extends android.app.Fragment {
                 mainActivity.goToPage(2);
             }
         });
+        hideAppBarBtn = (ImageButton) rootView.findViewById(R.id.hideAppBarBtn);
+        hideAppBarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleActionBarBtn();
+            }
+        });
 
 //TODO clean
         //Hide player 3 & 4
-        ((RelativeLayout) rootView.findViewById(R.id.playerScoreSheetFragmentLayout3)).setVisibility(View.GONE);
-        ((RelativeLayout) rootView.findViewById(R.id.playerScoreSheetFragmentLayout4)).setVisibility(View.GONE);
+        (rootView.findViewById(R.id.playerScoreSheetFragmentLayout3)).setVisibility(View.GONE);
+        (rootView.findViewById(R.id.playerScoreSheetFragmentLayout4)).setVisibility(View.GONE);
         if (ThisGame.getNumPlayers() >= 3) {
-            ((RelativeLayout) rootView.findViewById(R.id.playerScoreSheetFragmentLayout3)).setVisibility(View.VISIBLE);
+            (rootView.findViewById(R.id.playerScoreSheetFragmentLayout3)).setVisibility(View.VISIBLE);
 
             if (ThisGame.getNumPlayers() == 4) {
-                ((RelativeLayout) rootView.findViewById(R.id.playerScoreSheetFragmentLayout4)).setVisibility(View.VISIBLE);
+                (rootView.findViewById(R.id.playerScoreSheetFragmentLayout4)).setVisibility(View.VISIBLE);
             }
         }
 
@@ -89,8 +97,43 @@ public class ScoreFragment extends android.app.Fragment {
 
         setUpBonusBtns(rootView);
 
+        if (mainActivity.isDuelPane()) {
+            rootView.findViewById(R.id.backBtn).setVisibility(View.GONE);
+            hideAppBarBtn.setVisibility(View.VISIBLE);
+        } else {
+            hideAppBarBtn.setVisibility(View.GONE);
+        }
+
         moveDayMarker();
+
+//        setUpPlayerNameBtns(rootView);
         return rootView;
+    }
+
+//    private void setUpPlayerNameBtns(View rootView) {
+//        List<View> playerNameBtns = new ArrayList<>();
+//        playerNameBtns.add(rootView.findViewById(R.id.playerNameBtn1));
+//        playerNameBtns.add(rootView.findViewById(R.id.playerNameBtn2));
+//        playerNameBtns.add(rootView.findViewById(R.id.playerNameBtn3));
+//        playerNameBtns.add(rootView.findViewById(R.id.playerNameBtn4));
+//
+//        for (int i=0;i<playerNameBtns.size();i++) {
+//            final int playerNum = i + 1;
+//            playerNameBtns.get(i).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    //
+//                }
+//            });
+//        }
+//    }
+
+    private void toggleActionBarBtn() {
+        if (mainActivity.toggleActionBar()) {
+            hideAppBarBtn.setRotation(180);
+        } else {
+            hideAppBarBtn.setRotation(0);
+        }
     }
 
     private void setUpBonusBtns(View rootView) {

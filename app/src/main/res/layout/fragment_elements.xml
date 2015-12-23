@@ -87,16 +87,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/fireHolder1">
-
-
                     <ImageView
                         android:id="@+id/waterImg1"
                         style="@style/waterStyle"
                         android:layout_width="wrap_content"
 
                         android:layout_height="wrap_content" />
-
-
                     <TextView
                         android:id="@+id/waterCount1"
                         android:layout_width="wrap_content"
@@ -104,7 +100,6 @@
                         android:layout_below="@id/waterImg1"
                         android:layout_centerInParent="true"
                         android:text="@string/textPlaceHolder" />
-
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -157,6 +152,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/playerScoreHolder1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -341,6 +337,7 @@
 
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/playerScoreHolder2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -525,6 +522,7 @@
 
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/playerScoreHolder3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -710,6 +708,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/playerScoreHolder4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -765,9 +764,10 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
                 android:rotation="180"
-                android:src="@drawable/ic_menu_send" />
+                android:src="@drawable/ic_menu_send"
+                android:background="@drawable/round_top_button"/>
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/elementsPoolTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/backBtn"
@@ -782,7 +782,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textView2"
+                android:layout_below="@id/elementsPoolTitle"
                 android:layout_centerHorizontal="true"
                 android:gravity="center">
 

@@ -99,15 +99,12 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerVertical">true</item>
-        <item name="android:layout_marginEnd">15dp</item>
-        <item name="android:layout_marginStart">50sp</item>
     </style>
     <style name="scoreHolder">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerVertical">true</item>
-        <item name="android:layout_marginEnd">5dp</item>
-        <item name="android:layout_marginStart">25sp</item>
+        <item name="android:layout_marginStart">5sp</item>
     </style>
     <style name="scoreBtns">
         <item name="android:layout_width">30sp</item>
@@ -139,8 +136,8 @@
     <style name="summonTrackTitle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_centerHorizontal">true</item>
         <item name="android:text">Summon</item>
+        <item name="android:layout_centerHorizontal">true</item>
     </style>
 
     <style name="scoreTitle">
@@ -148,5 +145,12 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:text">Score</item>
+    </style>
+
+    <style name="playerScoreBtnsHolder">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">0sp</item>
+        <item name="android:layout_centerHorizontal">true</item>
     </style>
 </resources>

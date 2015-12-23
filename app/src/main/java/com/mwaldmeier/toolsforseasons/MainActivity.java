@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.net.Uri;
@@ -15,11 +16,14 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 
 import java.util.Set;
@@ -38,6 +42,9 @@ public class MainActivity extends AppCompatActivity
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     NavigationView navigationView;
+    double widthByDensity;
+    double hiByDensity;
+    boolean duelPane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +52,8 @@ public class MainActivity extends AppCompatActivity
 
         ThisGame = ((Seasons) this.getApplication());
 
-        //setup defalut game of 4
-        ThisGame.setUpNewGame(4);
+        //setup defalut game of 2
+        ThisGame.setUpNewGame(2);
 
         sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
 
@@ -67,8 +74,53 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
+        navigationView.getMenu().findItem(R.id.nav_game).setVisible(false);
 
-        setActiveFragment(new ScoreFragment());
+        getScreenSize();
+        screenSetup();
+
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        getScreenSize();
+        screenSetup();
+    }
+
+    private void screenSetup() {
+        if (widthByDensity < 3.7) {
+            duelPane = false;
+            setActiveFragment(new ScoreFragment());
+            ActionBar actionBar = (ActionBar) this.getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.show();
+            }
+        } else {
+            duelPane = true;
+            navigationView.getMenu().findItem(R.id.nav_elements).setVisible(false);
+            navigationView.getMenu().findItem(R.id.nav_score).setVisible(false);
+            navigationView.getMenu().findItem(R.id.nav_game).setVisible(true);
+            setActiveFragment(new DuelPaneGameFragment());
+        }
+    }
+
+    public boolean isDuelPane() {
+        return duelPane;
+    }
+
+    public double getHiByDensity() {
+        return hiByDensity;
+    }
+
+    private void getScreenSize() {
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int width=dm.widthPixels;
+        int height=dm.heightPixels;
+        int dens=dm.densityDpi;
+        widthByDensity = (double)width/(double)dens;
+        hiByDensity = (double)height/(double)dens;
     }
 
     private void setUpSettings() {
@@ -200,7 +252,7 @@ public class MainActivity extends AppCompatActivity
                 .setItems(R.array.playerNumbers, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         ThisGame.setUpNewGame((which + 2));
-                        setActiveFragment(new ScoreFragment());
+                        screenSetup();
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -288,6 +340,9 @@ public class MainActivity extends AppCompatActivity
             changeSettingsAlert();
         } else if (id == R.id.nav_newGame){
             sendNewGameAlert();
+        } else if (id == R.id.nav_game) {
+            fragment = new DuelPaneGameFragment();
+            setActiveFragment(fragment);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -316,16 +371,33 @@ public class MainActivity extends AppCompatActivity
         if (fragment != null) {
             setActiveFragment(fragment);
         }
-        navigationView.getMenu().getItem(pageNum-1).setChecked(true);
+        navigationView.getMenu().getItem(pageNum - 1).setChecked(true);
     }
 
     private void setScreenSetting(String screenSetting) {
+        View root = findViewById(android.R.id.content);
         if (screenSetting.equals("1")) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            if (root != null) {
+                root.setKeepScreenOn(true);
+            }
         } else {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            if (root != null) {
+                root.setKeepScreenOn(false);
+            }
         }
     }
 
-
+    public boolean toggleActionBar() {
+        boolean hidden = false;
+        ActionBar actionBar= (ActionBar) this.getSupportActionBar();
+        if (actionBar.isShowing()) {
+            actionBar.hide();
+            hidden = true;
+        } else {
+            actionBar.show();
+        }
+        return hidden;
+    }
 }

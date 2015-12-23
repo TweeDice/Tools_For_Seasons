@@ -9,7 +9,10 @@
             android:id="@+id/nav_elements"
             android:icon="@drawable/ic_goods"
             android:title="Elements" />
-
+        <item
+            android:id="@+id/nav_game"
+            android:icon="@drawable/ic_score"
+            android:title="Game" />
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_account"

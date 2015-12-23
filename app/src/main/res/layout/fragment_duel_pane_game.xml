@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <fragment
+        android:id="@+id/scoreFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:name="com.mwaldmeier.toolsforseasons.ScoreFragment"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_score" />
+    <fragment
+        android:id="@+id/elementsFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:name="com.mwaldmeier.toolsforseasons.ElementsFragment"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_elements" />
+
+</LinearLayout>

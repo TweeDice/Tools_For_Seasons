@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +94,20 @@ public class ElementsFragment extends android.app.Fragment {
         setUpPlayerScoreLbls(rootView);
         setUpScoreBtns(rootView);
 
+        if (mainActivity.isDuelPane()) {
+            if (ThisGame.getNumPlayers() > 2) {
+                if (mainActivity.getHiByDensity() < 3.5) {
+                    Toast.makeText(getActivity(), "This view is not optimized for more than 2 players.\nRotate your view or change to 2 player.",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+            rootView.findViewById(R.id.backBtn).setVisibility(View.GONE);
+            rootView.findViewById(R.id.playerScoreHolder1).setVisibility(View.GONE);
+            rootView.findViewById(R.id.playerScoreHolder2).setVisibility(View.GONE);
+            rootView.findViewById(R.id.playerScoreHolder3).setVisibility(View.GONE);
+            rootView.findViewById(R.id.playerScoreHolder4).setVisibility(View.GONE);
+            rootView.findViewById(R.id.elementsPoolTitle).setVisibility(View.GONE);
+        }
 
         return rootView;
     }

@@ -14,11 +14,13 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_gravity="end"
             android:layout_marginEnd="50dp"
             android:layout_marginTop="3dp"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_menu_send" />
+            android:src="@drawable/ic_menu_send"
+            android:background="@drawable/round_top_button"
+            />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -28,11 +30,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageButton
+                        android:id="@+id/hideAppBarBtn"
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_gravity="end"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="3dp"
+                        android:src="@drawable/ic_eject_white_24px"
+                        android:background="@drawable/round_top_button"/>
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5sp">
+
 
                     <ImageView
                         android:id="@+id/boardImg"
@@ -106,40 +124,47 @@
                     android:layout_height="1dp"
                     android:background="@android:color/darker_gray" />
 
-                <RelativeLayout
-                    android:id="@+id/playerScoreSheetFragmentLayout"
-                    style="@style/playerScoreBox">
+                <LinearLayout
+                    android:id="@+id/playerScoreSheetFragmentLayout1"
+                    style="@style/playerScoreBox"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
 
-                    <TextView
-                        android:id="@+id/playerTextLbl1"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:text="@string/playerTitle"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:layout_weight="1">
 
-                    <TextView
-                        android:id="@+id/playerIDLbl1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="false"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@id/playerTextLbl1"
-                        android:paddingStart="5dp"
-                        android:text="1"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        <TextView
+                            android:id="@+id/playerTextLbl1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:text="@string/playerTitle"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                    <Button
-                        android:id="@+id/playerBonusBtn1"
-                        style="@style/bonusBtnStyle"
-                        android:layout_below="@id/playerTextLbl1" />
+                        <TextView
+                            android:id="@+id/playerIDLbl1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="false"
+                            android:layout_alignParentTop="true"
+                            android:layout_toEndOf="@id/playerTextLbl1"
+                            android:text="1"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <Button
+                            android:id="@+id/playerBonusBtn1"
+                            style="@style/bonusBtnStyle"
+                            android:layout_below="@id/playerTextLbl1" />
+                    </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/playerSummonHolder1"
                         style="@style/summonHolder"
-                        android:layout_toEndOf="@id/playerBonusBtn1">
+                        android:layout_weight="1">
 
                         <TextView
                             android:id="@+id/playerSummonTitle1"
@@ -149,8 +174,9 @@
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_below="@id/playerSummonTitle1"
                             android:layout_marginTop="0sp"
-                            android:layout_below="@id/playerSummonTitle1">
+                            android:layout_centerHorizontal="true">
 
                             <Button
                                 android:id="@+id/minusOneSummonBtn1"
@@ -159,9 +185,9 @@
 
                             <TextView
                                 android:id="@+id/playerSummon1"
-                                android:text="@string/textPlaceHolder"
+                                style="@style/summonAmount"
                                 android:layout_toEndOf="@id/minusOneSummonBtn1"
-                                style="@style/summonAmount" />
+                                android:text="@string/textPlaceHolder" />
 
                             <Button
                                 android:id="@+id/addOneSummonBtn1"
@@ -175,80 +201,84 @@
 
                     <RelativeLayout
                         android:id="@+id/playerScoreHolder1"
-                        android:layout_toEndOf="@id/playerSummonHolder1"
                         style="@style/scoreHolder"
-                        >
+                        android:layout_weight="1">
+
                         <TextView
                             android:id="@+id/playerScoreTitle1"
-
                             style="@style/scoreTitle" />
 
                         <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="0sp"
+                            style="@style/playerScoreBtnsHolder"
                             android:layout_below="@id/playerScoreTitle1">
 
-                        <Button
-                            android:id="@+id/minusOneScoreBtn1"
-                            style="@style/scoreBtns"
-                            android:text="-" />
+                            <Button
+                                android:id="@+id/minusOneScoreBtn1"
+                                style="@style/scoreBtns"
+                                android:text="-" />
 
-                        <TextView
-                            android:id="@+id/playerScore1"
-                            android:layout_toEndOf="@id/minusOneScoreBtn1"
-                            android:text="@string/textPlaceHolder"
-                            style="@style/scoreAmount" />
+                            <TextView
+                                android:id="@+id/playerScore1"
+                                style="@style/scoreAmount"
+                                android:layout_toEndOf="@id/minusOneScoreBtn1"
+                                android:text="@string/textPlaceHolder" />
 
-                        <Button
-                            android:id="@+id/addOneScoreBtn1"
-                            style="@style/scoreBtns"
-                            android:layout_toEndOf="@id/playerScore1"
-                            android:text="+" />
-                            </RelativeLayout>
+                            <Button
+                                android:id="@+id/addOneScoreBtn1"
+                                style="@style/scoreBtns"
+                                android:layout_toEndOf="@id/playerScore1"
+                                android:text="+" />
+                        </RelativeLayout>
 
 
                     </RelativeLayout>
-                </RelativeLayout>
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@android:color/darker_gray" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/playerScoreSheetFragmentLayout2"
-                    style="@style/playerScoreBox">
+                    style="@style/playerScoreBox"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
 
-                    <TextView
-                        android:id="@+id/playerTextLbl2"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:text="@string/playerTitle"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:layout_weight="2">
 
-                    <TextView
-                        android:id="@+id/playerIDLbl2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@id/playerTextLbl2"
-                        android:paddingStart="5dp"
-                        android:text="2"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        <TextView
+                            android:id="@+id/playerTextLbl2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:text="@string/playerTitle"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                    <Button
-                        android:id="@+id/playerBonusBtn2"
-                        style="@style/bonusBtnStyle"
-                        android:layout_below="@id/playerTextLbl2" />
+                        <TextView
+                            android:id="@+id/playerIDLbl2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="false"
+                            android:layout_alignParentTop="true"
+                            android:layout_toEndOf="@id/playerTextLbl2"
+                            android:text="2"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                        <Button
+                            android:id="@+id/playerBonusBtn2"
+                            style="@style/bonusBtnStyle"
+                            android:layout_below="@id/playerTextLbl2" />
+                    </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/playerSummonHolder2"
                         style="@style/summonHolder"
-                        android:layout_toEndOf="@id/playerBonusBtn2">
+                        android:layout_weight="2">
 
                         <TextView
                             android:id="@+id/playerSummonTitle2"
@@ -258,8 +288,9 @@
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_below="@id/playerSummonTitle2"
                             android:layout_marginTop="0sp"
-                            android:layout_below="@id/playerSummonTitle2">
+                            android:layout_centerHorizontal="true">
 
                             <Button
                                 android:id="@+id/minusOneSummonBtn2"
@@ -268,9 +299,9 @@
 
                             <TextView
                                 android:id="@+id/playerSummon2"
-                                android:text="@string/textPlaceHolder"
+                                style="@style/summonAmount"
                                 android:layout_toEndOf="@id/minusOneSummonBtn2"
-                                style="@style/summonAmount" />
+                                android:text="@string/textPlaceHolder" />
 
                             <Button
                                 android:id="@+id/addOneSummonBtn2"
@@ -284,18 +315,15 @@
 
                     <RelativeLayout
                         android:id="@+id/playerScoreHolder2"
-                        android:layout_toEndOf="@id/playerSummonHolder2"
                         style="@style/scoreHolder"
-                        >
+                        android:layout_weight="2">
+
                         <TextView
                             android:id="@+id/playerScoreTitle2"
-
                             style="@style/scoreTitle" />
 
                         <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="0sp"
+                            style="@style/playerScoreBtnsHolder"
                             android:layout_below="@id/playerScoreTitle2">
 
                             <Button
@@ -305,9 +333,9 @@
 
                             <TextView
                                 android:id="@+id/playerScore2"
+                                style="@style/scoreAmount"
                                 android:layout_toEndOf="@id/minusOneScoreBtn2"
-                                android:text="@string/textPlaceHolder"
-                                style="@style/scoreAmount" />
+                                android:text="@string/textPlaceHolder" />
 
                             <Button
                                 android:id="@+id/addOneScoreBtn2"
@@ -318,48 +346,54 @@
 
 
                     </RelativeLayout>
-
-
-                </RelativeLayout>
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@android:color/darker_gray" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/playerScoreSheetFragmentLayout3"
-                    style="@style/playerScoreBox">
+                    style="@style/playerScoreBox"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
 
-                    <TextView
-                        android:id="@+id/playerTextLbl3"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:text="@string/playerTitle"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:layout_weight="3">
 
-                    <TextView
-                        android:id="@+id/playerIDLbl3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@id/playerTextLbl3"
-                        android:paddingStart="5dp"
-                        android:text="3"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        <TextView
+                            android:id="@+id/playerTextLbl3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:text="@string/playerTitle"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                    <Button
-                        android:id="@+id/playerBonusBtn3"
-                        style="@style/bonusBtnStyle"
-                        android:layout_below="@id/playerTextLbl3" />
+                        <TextView
+                            android:id="@+id/playerIDLbl3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="false"
+                            android:layout_alignParentTop="true"
+                            android:layout_toEndOf="@id/playerTextLbl3"
+                            android:text="3"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <Button
+                            android:id="@+id/playerBonusBtn3"
+                            style="@style/bonusBtnStyle"
+                            android:layout_below="@id/playerTextLbl3" />
+                    </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/playerSummonHolder3"
                         style="@style/summonHolder"
-                        android:layout_toEndOf="@id/playerBonusBtn3">
+                        android:layout_weight="3">
 
                         <TextView
                             android:id="@+id/playerSummonTitle3"
@@ -369,8 +403,9 @@
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_below="@id/playerSummonTitle3"
                             android:layout_marginTop="0sp"
-                            android:layout_below="@id/playerSummonTitle3">
+                            android:layout_centerHorizontal="true">
 
                             <Button
                                 android:id="@+id/minusOneSummonBtn3"
@@ -379,9 +414,9 @@
 
                             <TextView
                                 android:id="@+id/playerSummon3"
-                                android:text="@string/textPlaceHolder"
+                                style="@style/summonAmount"
                                 android:layout_toEndOf="@id/minusOneSummonBtn3"
-                                style="@style/summonAmount" />
+                                android:text="@string/textPlaceHolder" />
 
                             <Button
                                 android:id="@+id/addOneSummonBtn3"
@@ -395,18 +430,15 @@
 
                     <RelativeLayout
                         android:id="@+id/playerScoreHolder3"
-                        android:layout_toEndOf="@id/playerSummonHolder3"
                         style="@style/scoreHolder"
-                        >
+                        android:layout_weight="3">
+
                         <TextView
                             android:id="@+id/playerScoreTitle3"
-
                             style="@style/scoreTitle" />
 
                         <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="0sp"
+                            style="@style/playerScoreBtnsHolder"
                             android:layout_below="@id/playerScoreTitle3">
 
                             <Button
@@ -416,9 +448,9 @@
 
                             <TextView
                                 android:id="@+id/playerScore3"
+                                style="@style/scoreAmount"
                                 android:layout_toEndOf="@id/minusOneScoreBtn3"
-                                android:text="@string/textPlaceHolder"
-                                style="@style/scoreAmount" />
+                                android:text="@string/textPlaceHolder" />
 
                             <Button
                                 android:id="@+id/addOneScoreBtn3"
@@ -429,46 +461,54 @@
 
 
                     </RelativeLayout>
-                </RelativeLayout>
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@android:color/darker_gray" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/playerScoreSheetFragmentLayout4"
-                    style="@style/playerScoreBox">
+                    style="@style/playerScoreBox"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
 
-                    <TextView
-                        android:id="@+id/playerTextLbl4"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:text="@string/playerTitle"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:layout_weight="4">
 
-                    <TextView
-                        android:id="@+id/playerIDLbl4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@id/playerTextLbl4"
-                        android:paddingStart="5dp"
-                        android:text="4"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        <TextView
+                            android:id="@+id/playerTextLbl4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:text="@string/playerTitle"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                    <Button
-                        android:id="@+id/playerBonusBtn4"
-                        style="@style/bonusBtnStyle"
-                        android:layout_below="@id/playerTextLbl4" />
+                        <TextView
+                            android:id="@+id/playerIDLbl4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="false"
+                            android:layout_alignParentTop="true"
+                            android:layout_toEndOf="@id/playerTextLbl4"
+                            android:text="4"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <Button
+                            android:id="@+id/playerBonusBtn4"
+                            style="@style/bonusBtnStyle"
+                            android:layout_below="@id/playerTextLbl4" />
+                    </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/playerSummonHolder4"
                         style="@style/summonHolder"
-                        android:layout_toEndOf="@id/playerBonusBtn4">
+                        android:layout_weight="4">
 
                         <TextView
                             android:id="@+id/playerSummonTitle4"
@@ -478,8 +518,9 @@
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_below="@id/playerSummonTitle4"
                             android:layout_marginTop="0sp"
-                            android:layout_below="@id/playerSummonTitle4">
+                            android:layout_centerHorizontal="true">
 
                             <Button
                                 android:id="@+id/minusOneSummonBtn4"
@@ -488,9 +529,9 @@
 
                             <TextView
                                 android:id="@+id/playerSummon4"
-                                android:text="@string/textPlaceHolder"
+                                style="@style/summonAmount"
                                 android:layout_toEndOf="@id/minusOneSummonBtn4"
-                                style="@style/summonAmount" />
+                                android:text="@string/textPlaceHolder" />
 
                             <Button
                                 android:id="@+id/addOneSummonBtn4"
@@ -504,18 +545,15 @@
 
                     <RelativeLayout
                         android:id="@+id/playerScoreHolder4"
-                        android:layout_toEndOf="@id/playerSummonHolder4"
                         style="@style/scoreHolder"
-                        >
+                        android:layout_weight="4">
+
                         <TextView
                             android:id="@+id/playerScoreTitle4"
-
                             style="@style/scoreTitle" />
 
                         <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="0sp"
+                            style="@style/playerScoreBtnsHolder"
                             android:layout_below="@id/playerScoreTitle4">
 
                             <Button
@@ -525,9 +563,9 @@
 
                             <TextView
                                 android:id="@+id/playerScore4"
+                                style="@style/scoreAmount"
                                 android:layout_toEndOf="@id/minusOneScoreBtn4"
-                                android:text="@string/textPlaceHolder"
-                                style="@style/scoreAmount" />
+                                android:text="@string/textPlaceHolder" />
 
                             <Button
                                 android:id="@+id/addOneScoreBtn4"
@@ -538,9 +576,7 @@
 
 
                     </RelativeLayout>
-
-
-                </RelativeLayout>
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
