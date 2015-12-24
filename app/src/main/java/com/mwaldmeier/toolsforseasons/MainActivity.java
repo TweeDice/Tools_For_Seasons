@@ -73,11 +73,11 @@ public class MainActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getMenu().getItem(0).setChecked(true);
         navigationView.getMenu().findItem(R.id.nav_game).setVisible(false);
 
         getScreenSize();
         screenSetup();
+        navigationView.getMenu().getItem(0).setChecked(true);
 
     }
 
@@ -96,6 +96,9 @@ public class MainActivity extends AppCompatActivity
             if (actionBar != null) {
                 actionBar.show();
             }
+            navigationView.getMenu().findItem(R.id.nav_elements).setVisible(true);
+            navigationView.getMenu().findItem(R.id.nav_score).setVisible(true);
+            navigationView.getMenu().findItem(R.id.nav_game).setVisible(false);
         } else {
             duelPane = true;
             navigationView.getMenu().findItem(R.id.nav_elements).setVisible(false);
