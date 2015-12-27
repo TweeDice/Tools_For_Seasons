@@ -41,13 +41,12 @@ public class ElementsFragment extends android.app.Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_elements, container, false);
 
-        ThisGame = ((Seasons) getActivity().getApplication());
+        ThisGame = (Seasons) getActivity().getApplication();
         mainActivity = (MainActivity) getActivity();
-        appContext = getActivity().getApplicationContext();
 
         //set up drop sound
-        sp = (mainActivity).getSoundPool();
-        soundID = sp.load(appContext, R.raw.blop, 1);
+        sp = mainActivity.getSoundPool();
+        soundID = sp.load(getActivity().getApplicationContext(), R.raw.blop, 1);
 
         ((ImageButton) rootView.findViewById(R.id.backBtn)).setOnClickListener(new View.OnClickListener() {
             @Override

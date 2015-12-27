@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity
 
         getScreenSize();
         screenSetup();
-        navigationView.getMenu().getItem(0).setChecked(true);
+
 
     }
 
@@ -99,12 +99,14 @@ public class MainActivity extends AppCompatActivity
             navigationView.getMenu().findItem(R.id.nav_elements).setVisible(true);
             navigationView.getMenu().findItem(R.id.nav_score).setVisible(true);
             navigationView.getMenu().findItem(R.id.nav_game).setVisible(false);
+            navigationView.getMenu().getItem(0).setChecked(true);
         } else {
             duelPane = true;
             navigationView.getMenu().findItem(R.id.nav_elements).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_score).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_game).setVisible(true);
             setActiveFragment(new DuelPaneGameFragment());
+            navigationView.getMenu().getItem(2).setChecked(true);
         }
     }
 
