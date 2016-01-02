@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity
         return preferences.getString(SOUND_ON, null);
     }
 
-    private void setSetting(String setting, String value) {
+    public void setSetting(String setting, String value) {
         editor.putString(setting, value);
         editor.apply();
         if (setting.equals(SCREEN_ALWAYS_ON)) {
@@ -244,7 +244,8 @@ public class MainActivity extends AppCompatActivity
             sendNewGameAlert();
             return true;
         } else if (id == R.id.action_settings) {
-            changeSettingsAlert();
+            //changeSettingsAlert();
+            goToPage(4);
         }
 
         return super.onOptionsItemSelected(item);
@@ -342,7 +343,8 @@ public class MainActivity extends AppCompatActivity
             fragment = new AboutFragment();
             setActiveFragment(fragment);
         } else if (id == R.id.nav_settings) {
-            changeSettingsAlert();
+            fragment = new SettingsFragment();
+            setActiveFragment(fragment);
         } else if (id == R.id.nav_newGame){
             sendNewGameAlert();
         } else if (id == R.id.nav_game) {
@@ -369,8 +371,10 @@ public class MainActivity extends AppCompatActivity
             fragment = new ScoreFragment();
         } else if (pageNum == 2) {
             fragment = new ElementsFragment();
-        } else if (pageNum == 3) {
+        } else if (pageNum == 5) {
             fragment = new AboutFragment();
+        } else if (pageNum == 4) {
+            fragment = new SettingsFragment();
         }
 
         if (fragment != null) {

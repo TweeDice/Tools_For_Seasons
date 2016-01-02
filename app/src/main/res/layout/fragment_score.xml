@@ -154,7 +154,7 @@
                             android:layout_toEndOf="@id/playerTextLbl1"
                             android:text="1"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:layout_marginStart="2sp"/>
+                            android:layout_marginStart="3sp"/>
 
                         <Button
                             android:id="@+id/playerBonusBtn1"
@@ -270,7 +270,7 @@
                             android:layout_toEndOf="@id/playerTextLbl2"
                             android:text="2"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:layout_marginStart="2sp"/>
+                            android:layout_marginStart="3sp"/>
                         <Button
                             android:id="@+id/playerBonusBtn2"
                             style="@style/bonusBtnStyle"
@@ -385,7 +385,7 @@
                             android:layout_toEndOf="@id/playerTextLbl3"
                             android:text="3"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:layout_marginStart="2sp"/>
+                            android:layout_marginStart="3sp"/>
 
                         <Button
                             android:id="@+id/playerBonusBtn3"
@@ -501,7 +501,7 @@
                             android:layout_toEndOf="@id/playerTextLbl4"
                             android:text="4"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:layout_marginStart="2sp"/>
+                            android:layout_marginStart="3sp"/>
 
                         <Button
                             android:id="@+id/playerBonusBtn4"

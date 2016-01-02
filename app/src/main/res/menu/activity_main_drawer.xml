@@ -14,6 +14,10 @@
             android:icon="@drawable/ic_score"
             android:title="Game" />
         <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="Settings" />
+        <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_account"
             android:title="About" />
@@ -25,11 +29,6 @@
                 android:id="@+id/nav_newGame"
                 android:icon="@drawable/ic_new_ngame"
                 android:title="New Game" />
-
-            <item
-                android:id="@+id/nav_settings"
-                android:icon="@drawable/ic_settings"
-                android:title="Settings" />
         </menu>
     </item>
 </menu>
